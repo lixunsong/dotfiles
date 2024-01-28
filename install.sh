@@ -197,5 +197,8 @@ update_conf(){
         echo "update zsh.local, for local usage"
         cp zsh.local $HOME/.zsh.local
     fi
-    echo "update configure of zsh & tmux done"
+    if [ -f "$HOME/.custom.el" ]; then
+        echo "update emacs's .custom.el"
+        cp $DOTFILES/emacs/.custom.el $HOME/.custom.el
+    echo "update configure of zsh & tmux & emacs done"
 }

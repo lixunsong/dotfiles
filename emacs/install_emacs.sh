@@ -4,6 +4,7 @@
 SYSTEM=`uname -s`
 
 FSHOME="/cephfs/xunsong.li"
+DOTFILES=$HOME/dotfiles
 
 # Use colors, but only if connected to a terminal, and that terminal
 # supports them.
@@ -53,5 +54,9 @@ unzip myelpa-stable.zip
 mv myelpa-stable $HOME/myelpa
 ## Uncomment the line containing “myelpa” in lisp/init-elpa.el.
 sed -i 's/^;;\(.*myelpa.*\)/\1/' .emacs.d/lisp/init-elpa.el
+
+# add my custom tweaks for chenbin's config
+mv $HOME/.custom.el $HOME/.custom.el.bak
+cp $DOTFILE/emacs/.custom.el $HOME/.custom.el
 
 printf "${GREEN} ➜  Install Emacs Successfully...${NORMAL}\n"
