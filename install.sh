@@ -1,6 +1,12 @@
-#!/bin/sh
+#add add !/bin/sh
 
-export DOTFILES=$HOME/dotfiles
+if [ -d "/exphfs/xunsong.li/dotfiles" ]; then
+    export DOTFILES=/cephfs/xunsong.li/dotfiles
+elif [ -d "/jfs/xunsong.li/dotfiles" ]; then
+    export DOTFILES=/jfs/xunsong.li/dotfiles
+else
+    export DOTFILES=$HOME/dotfiles
+fi
 export EMACSD=$HOME/.emacs.d
 
 # Get OS information
@@ -191,14 +197,15 @@ update_conf(){
         echo "remove ~/.zsh dir"
         rm -rf $HOME/.zsh
     fi
-    cp zshrc $HOME/.zshrc
-    cp -r zsh $HOME/.zsh
+    cp $DOTFILES/zshrc $HOME/.zshrc
+    cp -r $DOTFILES/zsh $HOME/.zsh
     if ! [ -f "$HOME/.zsh.local" ]; then
         echo "update zsh.local, for local usage"
-        cp zsh.local $HOME/.zsh.local
+        cp $DOTFILES/zsh.local $HOME/.zsh.local
     fi
     if [ -f "$HOME/.custom.el" ]; then
         echo "update emacs's .custom.el"
         cp $DOTFILES/emacs/.custom.el $HOME/.custom.el
+    fi
     echo "update configure of zsh & tmux & emacs done"
 }
